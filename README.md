@@ -30,7 +30,7 @@ Uma aplicação baseada em Django para gerenciar notas.
         python3 -m venv venv
         source venv/bin/activate
         ```
-    * **No Windows:**
+    * **No Windows:** (use o gitbash ou pwsh para garantir que não terá problemas de permissão)
         ```bash
         python -m venv venv
         .\venv\Scripts\activate
