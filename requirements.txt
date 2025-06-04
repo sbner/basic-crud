@@ -1,0 +1,5 @@
+Django
+python-decouple
+dj-database-url
+django-crispy-forms
+crispy-bootstrap5

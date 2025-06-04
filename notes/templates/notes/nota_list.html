@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block page_title %}
+Lista de Notas
+{% endblock page_title %}
+
+{% block content %}
+
+<h1>Notas</h1>
+
+{% if nota_list %}
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Título</th>
+                <th scope="col">Descrição</th>
+                <th scope="col">Data de Criação</th>
+                <th scope="col">Prazo</th>
+                <th scope="col">Finalizado em</th>
+                <th scope="col">Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for nota in nota_list %}
+                    <tr>
+                    <th scope="row">{{nota.pk}}</th>
+                    <td>{{nota.title}}</td>
+                    <td>{{nota.description}}</td>
+                    <td>{{nota.created_at}}</td>
+                    <td>{{nota.deadline}}</td>
+                    <td>{{nota.finished_at | default:"-"}}</td>
+
+                    <td>
+                        <a href="{% url 'concluir_nota' pk=nota.pk %}" class="btn btn-primary btn-sm {% if nota.finished_at %}disabled{% endif %}">concluir</a>
+                        <a href="{% url 'atualizar_nota' pk=nota.pk %}" class="btn btn-secondary btn-sm {% if nota.finished_at %}disabled{% endif %}">Editar</a>
+                        <a href="{% url 'deletar_nota' pk=nota.pk %}" class="btn btn-danger btn-sm">Excluir</a>
+                    </td>
+                    </tr>
+                {% endfor %}
+        </tbody>
+    </table>
+{% else %}
+    <p>Não há tarefas cadastradas</p>
+{% endif %}
+
+<a href="{% url 'notas_create' %}" class="btn btn-primary">Adicionar Notas</a>
+{% endblock content %}
